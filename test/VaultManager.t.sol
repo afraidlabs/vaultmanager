@@ -32,6 +32,9 @@ contract VaultManagerTest is Test {
         vaultManager.createVault();
         Vault vault = vaultManager.vaults(HASAN);
 
+        vm.expectRevert(abi.encodeWithSignature("Initialised()"));
+        vault.init(HASAN);
+
         assertEq(vault.owner(), HASAN);
         assertEq(
             address(vault.token()),
