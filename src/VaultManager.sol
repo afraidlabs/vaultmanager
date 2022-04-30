@@ -110,10 +110,13 @@ contract Vault {
         if (wallets.length == 0) revert MissingWallets();
         for (uint256 i; i < wallets.length; i++) {
             uint256 tokens = otherdeed.balanceOf(wallets[i]);
-            uint256 tokenId = otherdeed.tokenOfOwnerByIndex(wallets[i], 0);
 
             for (uint256 j; j < tokens; j++) {
-                otherdeed.transferFrom(wallets[i], msg.sender, tokenId++);
+                otherdeed.transferFrom(
+                    wallets[i],
+                    msg.sender,
+                    otherdeed.tokenOfOwnerByIndex(wallets[i], 0)
+                );
             }
         }
     }
@@ -123,7 +126,7 @@ contract Vault {
         uint256 balance = token.balanceOf(address(this));
 
         if (balance > 0) {
-            success = token.transferFrom(address(this), msg.sender, balance);
+            success = token.transferFrom(address(this), wallet, balance);
             if (!success) {
                 revert FailedTransfer();
             }

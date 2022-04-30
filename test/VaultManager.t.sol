@@ -6,7 +6,7 @@ import "forge-std/Test.sol";
 
 contract VaultManagerTest is Test {
     VaultManager vaultManager =
-        VaultManager(0x33394e0FBd995469186cE7F9773067695e3FCF59);
+        VaultManager(0x0C342c3aab1C9e2b6E727a8Fb33dbdBEFe26b237);
     IERC20 token;
     IOtherDeed otherdeed =
         IOtherDeed(0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258);
